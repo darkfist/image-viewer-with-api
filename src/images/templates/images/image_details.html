@@ -15,15 +15,11 @@
 		</div>
 	</div>
 	<br>
-	{% for img in image_list %}
-			{% if img.image_id == object.id %}
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2">
-					<img src="/media/{{ img.image_url }}" alt="img02" class="img-responsive" /><br><br>
-				</div>	
-			</div>
-		{% endif %}
-	{% endfor %}
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<img src="/media/{{ object.image }}" alt="img02" class="img-responsive" /><br><br>
+		</div>	
+	</div>
 </div>
 
 

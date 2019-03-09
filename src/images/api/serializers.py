@@ -1,40 +1,63 @@
-from rest_framework.serializers import ModelSerializer, HyperlinkedIdentityField, SerializerMethodField
+from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from images.models import Image
 
 
-image_url = HyperlinkedIdentityField(view_name = 'images:details', lookup_field = 'slug')
+class ImageCreateSerializer(ModelSerializer):
+	class Meta:
+		model = Image
+		fields = [
+			'title',
+			'description',
+			'image',
+			'uploaded_by',
+		]
 
-class PostListSerializer(ModelSerializer):
-	url = image_url
+
+class ImageListSerializer(ModelSerializer):
+	image = SerializerMethodField()
 	uploaded_by = SerializerMethodField()
 	class Meta:
 		model = Image
 		fields = [
 			'title',
 			'description',
-			'url',
+			'image',
 			'uploaded_by',
 		]
 	def get_uploaded_by(self, obj):
 		return str(obj.uploaded_by.username)
 
+	def get_image(self, obj):
+		try:
+			image = obj.image.url
+		except:
+			image = None
+		return image
 
-class PostDetailSerializer(ModelSerializer):
-	url = image_url
+
+class ImageDetailSerializer(ModelSerializer):
+	image = SerializerMethodField()
 	uploaded_by = SerializerMethodField()
 	class Meta:
 		model = Image
 		fields = [
 			'title',
 			'description',
-			'url',
+			'image',
 			'uploaded_by',
 		]
 	def get_uploaded_by(self, obj):
 		return str(obj.uploaded_by.username)
 
+	def get_image(self, obj):
+		try:
+			image = obj.image.url
+		except:
+			image = None
+		return image
 
-class PostUpdateSerializer(ModelSerializer):
+
+class ImageUpdateSerializer(ModelSerializer):
 	class Meta:
 		model = Image
 		fields = [

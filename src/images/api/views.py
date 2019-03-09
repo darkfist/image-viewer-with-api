@@ -1,13 +1,30 @@
 from django.db.models import Q
-from rest_framework.generics import ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView, DestroyAPIView
+from rest_framework.generics import (
+			CreateAPIView,
+			ListAPIView,
+			RetrieveAPIView,
+			RetrieveUpdateAPIView,
+			DestroyAPIView
+			)
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
 
 from images.models import Image
-from .serializers import PostListSerializer, PostDetailSerializer, PostUpdateSerializer
+from .serializers import (
+			ImageCreateSerializer,
+			ImageListSerializer,
+			ImageDetailSerializer,
+			ImageUpdateSerializer
+			)
 from .permissions import IsOwnerOrReadOnly
 
+
+class ImageCreateAPIView(CreateAPIView):
+	queryset = Image.objects.all()
+	serializer_class = ImageCreateSerializer
+
+
 class ImageListAPIView(ListAPIView):
-	serializer_class = PostListSerializer
+	serializer_class = ImageListSerializer
 
 	def get_queryset(self, *args, **kwargs):
 		queryset_list = Image.objects.all()
@@ -22,14 +39,14 @@ class ImageListAPIView(ListAPIView):
 
 class ImageDetailAPIView(RetrieveAPIView):
 	queryset = Image.objects.all()
-	serializer_class = PostDetailSerializer
+	serializer_class = ImageDetailSerializer
 
 	# lookup_field = 'uploaded_by'
 	# lookup_url_kwarg = 'user'
 
 class ImageUpdateAPIView(RetrieveUpdateAPIView):
 	queryset = Image.objects.all()
-	serializer_class = PostUpdateSerializer
+	serializer_class = ImageUpdateSerializer
 	permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
 	# def perform_update(self, serializer):
@@ -41,5 +58,5 @@ class ImageUpdateAPIView(RetrieveUpdateAPIView):
 
 class ImageDeleteAPIView(DestroyAPIView):
 	queryset = Image.objects.all()
-	serializer_class = PostDetailSerializer
+	serializer_class = ImageDetailSerializer
 	permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]

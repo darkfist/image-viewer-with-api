@@ -13,7 +13,7 @@ def register(request):
 		form.save()
 		# username = form.cleaned_data.get('username')
 		messages.success(request, 'Account created successfully! Now login to continue.')
-		return HttpResponseRedirect('/login/')
+		return HttpResponseRedirect('/users/login/')
 	
 	if form.errors:
 		errors = form.errors

@@ -16,12 +16,11 @@
 		</div>
 		<div class="row row-0-gutter">
 			{% for obj in object_list %}
-			{% for img in image_list %}
-					{% if img.image_id == obj.id %}
+			
 			<div class="col-md-6 col-0-gutter">
 				<div class="ot-portfolio-item">
 					<figure class="effect-bubba">
-						<img src="/media/{{ img.image_url }}" alt="img02" class="img-responsive" />
+						<img src="/media/{{ obj.image }}" alt="img02" class="img-responsive" />
 						<figcaption>
 							<h2>{{ obj.title }}</h2>
 							<p>Branding, Design</p>
@@ -30,8 +29,7 @@
 					</figure>
 				</div>
 			</div>
-			{% endif %}
-			{% endfor %}
+		
 			{% endfor %}
 		</div>
 

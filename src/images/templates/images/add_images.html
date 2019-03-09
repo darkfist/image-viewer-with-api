@@ -26,7 +26,6 @@
                             <label for="name"> Select Images:</label>
                             <div><input type="file" name="image"></div><br>
                         </div>
-                        <button class="add_image"><i class="fa fa-plus"></i> Add more</button><br>
 				     </div>
 				</fieldset>
 				<div class="form-group">
@@ -41,36 +40,3 @@
 
 
 {% endblock content %}
-
-
-{% block JS %}
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script>
-$(document).ready(function() {
-	 var x = 2;
-	   $('.add_image').click(function(e){ 
-	        e.preventDefault();
-	 		if(x <= 10){
-	        $('.add_form').append('<div class="row"><div><input type="file" id="extra" name="image" class="col-md-10"></div><a href="#" class="remove_field"><i class="fa fa-times"></i></a><br><br></div>'); 
-	        document.getElementById("extra").name = 'image' + x;
-	        document.getElementById("extra").id = 'img';
-	        x++;
-		}
-		else if (x == 11){
-	 		$('.add_form').append('<p>You can only add 10 images at a time</p>'); 
-	        x++;
-	    }
-	});
-	   
-    $('.add_form').on("click",".remove_field", function(e){ 
-		e.preventDefault(); 
-		$(this).parent('div').remove();
-		x--;		
-    })
-});
-	
-</script>
-
-{% endblock JS %}
