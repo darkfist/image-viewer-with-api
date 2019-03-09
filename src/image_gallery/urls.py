@@ -23,8 +23,8 @@ from images.views import display_images, add_images, image_details
 
 
 urlpatterns = [
-    url(r'^', include('images.urls')),
-    url(r'^api/images/', include('images.api.urls')),
+    url(r'^', include('images.urls', namespace='images')),
+    url(r'^api/images/', include('images.api.urls', namespace='images-api')),
     url(r'^users/', include('users.urls')),
     url(r'^admin/', admin.site.urls),
 ]
