@@ -1,0 +1,8 @@
+$ echo "*.py[cod]
+.DS_Store
+__pycache__/
+*.py[cod]
+*$py.class
+" > .gitignore
+media_cdn/
+static_cdn/

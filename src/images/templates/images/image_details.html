@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<br>
+<div class="container">
+	
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<center>
+			<h1>{{ object.title }}</h1>
+			<p>{{ object.description }}</p>	
+			</center>	
+		</div>
+	</div>
+	<br>
+	{% for img in image_list %}
+			{% if img.image_id == object.id %}
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<img src="/media/{{ img.image_url }}" alt="img02" class="img-responsive" /><br><br>
+				</div>	
+			</div>
+		{% endif %}
+	{% endfor %}
+</div>
+
+
+{% endblock content %}
