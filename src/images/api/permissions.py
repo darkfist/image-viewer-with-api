@@ -1,5 +1,6 @@
 from rest_framework.permissions import BasePermission, SAFE_METHODS
 
+
 class IsOwnerOrReadOnly(BasePermission):
 	message = "Only the owner can update or delete this image."
 	my_safe_method = ['GET', 'PUT']

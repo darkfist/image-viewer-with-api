@@ -2,7 +2,6 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 
-# Create your views here.
 from .models import Image
 from .forms import AddImage
 
@@ -31,7 +30,10 @@ def add_images(request):
 
 def display_images(request):
 	template_name = 'images/display_images.html'
+	
+	# querying Image table from db
 	queryset = Image.objects.all().order_by('-pk')
+
 	context = {"object_list": queryset}
 	return render(request, template_name, context)
 
@@ -39,13 +41,18 @@ def display_images(request):
 @login_required(login_url='/login/')
 def user_images(request):
 	template_name = 'images/user_images.html'
+
+	# querying Image table from db
 	queryset = Image.objects.filter(uploaded_by=request.user).order_by('-pk')
+	
 	context = {"object_list": queryset}
 	return render(request, template_name, context)
 
 
 def image_details(request, slug):
 	template_name = 'images/image_details.html'
+	
+	# querying Image table from db to get single row
 	obj = get_object_or_404(Image, slug=slug)
 	context = {"object": obj}
 	return render(request, template_name, context)

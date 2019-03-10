@@ -6,7 +6,7 @@ from rest_framework.generics import (
 			RetrieveUpdateAPIView,
 			DestroyAPIView
 			)
-from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from images.models import Image
 from .serializers import (
@@ -15,7 +15,8 @@ from .serializers import (
 			ImageDetailSerializer,
 			ImageUpdateSerializer
 			)
-from .permissions import IsOwnerOrReadOnly
+
+from .permissions import IsOwnerOrReadOnly # custom permission
 
 
 class ImageCreateAPIView(CreateAPIView):
@@ -37,24 +38,17 @@ class ImageListAPIView(ListAPIView):
 			queryset_list = queryset_list.filter(Q(uploaded_by__username=query2)).distinct()
 		return queryset_list
 
+
 class ImageDetailAPIView(RetrieveAPIView):
 	queryset = Image.objects.all()
 	serializer_class = ImageDetailSerializer
-
-	# lookup_field = 'uploaded_by'
-	# lookup_url_kwarg = 'user'
+	
 
 class ImageUpdateAPIView(RetrieveUpdateAPIView):
 	queryset = Image.objects.all()
 	serializer_class = ImageUpdateSerializer
 	permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
-	# def perform_update(self, serializer):
-	# 	serializer.save(uploaded_by=self.request.user)
-	# def get_serializer_class(self):
-	# 	if self.request.user.is_staff:
-	# 		return FullAccountSerializer
-	# 	return BasicAccountSerializer
 
 class ImageDeleteAPIView(DestroyAPIView):
 	queryset = Image.objects.all()
