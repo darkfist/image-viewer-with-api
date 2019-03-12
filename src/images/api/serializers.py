@@ -19,6 +19,7 @@ class ImageListSerializer(ModelSerializer):
 	class Meta:
 		model = Image
 		fields = [
+			'id',
 			'title',
 			'description',
 			'image',
@@ -41,6 +42,7 @@ class ImageDetailSerializer(ModelSerializer):
 	class Meta:
 		model = Image
 		fields = [
+			'id',
 			'title',
 			'description',
 			'image',

@@ -1,12 +1,12 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.contrib import messages
+from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import Image
 from .forms import AddImage
 
 
-@login_required(login_url='/login/')
+@login_required()
 def add_images(request):
 	form = AddImage(request.POST or None, request.FILES or None)
 	errors = None
@@ -18,7 +18,7 @@ def add_images(request):
 					image = form.cleaned_data.get('image'),
 					uploaded_by = request.user
 				)
-			return HttpResponseRedirect('/')
+			return redirect('images:view')
 			
 	if form.errors:
 		errors = form.errors
@@ -38,7 +38,7 @@ def display_images(request):
 	return render(request, template_name, context)
 
 
-@login_required(login_url='/login/')
+@login_required()
 def user_images(request):
 	template_name = 'images/user_images.html'
 
@@ -56,3 +56,12 @@ def image_details(request, slug):
 	obj = get_object_or_404(Image, slug=slug)
 	context = {"object": obj}
 	return render(request, template_name, context)
+
+
+@login_required()
+def delete_image(request, pk):
+	# querying Image table from db to get single row and deleting it
+	instance = get_object_or_404(Image, pk=pk).delete()
+	
+	messages.success(request, "Successfully deleted the image")
+	return redirect('images:user_img')

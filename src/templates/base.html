@@ -7,7 +7,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
-		<meta name="description" content="">
+		<meta name="description" content="A simple Image Gallery with API made with Python and Django.">
 		<meta name="author" content="Nishant Ranjan">
 		<title>Django Image Gallery</title>
 		<!-- Bootstrap core CSS -->
@@ -29,7 +29,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand page-scroll" href="#page-top"><h1><strong><em>Django Image Gallery</em></strong></h1></a>
+					<a class="navbar-brand page-scroll" href="{% url 'images:view' %}"><h1><strong><em>Django Image Gallery</em></strong></h1></a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

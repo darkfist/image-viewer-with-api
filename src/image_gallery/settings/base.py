@@ -64,8 +64,10 @@ WSGI_APPLICATION = 'image_gallery.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE'    : 'django.db.backends.mysql',
+        'NAME'      : 'imagesApiDB',
+        'USER'      : 'root',
+        'PASSWORD'  : 'darkfist123',
     }
 }
 
@@ -116,4 +118,5 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+LOGIN_URL='/users/login/'
 LOGIN_REDIRECT_URL = '/'

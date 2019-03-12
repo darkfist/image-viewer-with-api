@@ -10,6 +10,13 @@
 		<div class="col-md-6 col-md-offset-3">
 			<center>
 			<h1>{{ object.title }}</h1>
+			{% if request.user.is_authenticated %}
+			<a href="{% url 'images:delete' pk=object.pk %}">
+				<button class="btn btn-danger">Delete Image</button>
+			</a>
+			<br>
+			{% endif %}
+			<br>
 			<p>{{ object.description }}</p>	
 			</center>	
 		</div>
