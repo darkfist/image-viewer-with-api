@@ -11,10 +11,12 @@
 			<center>
 			<h1>{{ object.title }}</h1>
 			{% if request.user.is_authenticated %}
+			{% if object.uploaded_by == request.user %}
 			<a href="{% url 'images:delete' pk=object.pk %}">
 				<button class="btn btn-danger">Delete Image</button>
 			</a>
 			<br>
+			{% endif %}
 			{% endif %}
 			<br>
 			<p>{{ object.description }}</p>	

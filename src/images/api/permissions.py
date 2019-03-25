@@ -1,6 +1,6 @@
 from rest_framework.permissions import BasePermission
 
-
+# Custom permissions so that only authenticated users can edit or delete the images
 class IsOwnerOrReadOnly(BasePermission):
 	message = "Only the owner can update or delete this image."
 	my_safe_method = ['GET', 'PUT', 'DELETE']

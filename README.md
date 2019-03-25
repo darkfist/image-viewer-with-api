@@ -12,23 +12,20 @@ Accepted Image Formats : JPEG, JPG, PNG, GIF
 
 After cloning the repository on your machine move into the ```src\``` directory and install the dependencies by ```pip install requirements.txt```
 
-Then run the following commands to create the required directories:
-```
-~/src$ mkdir ../media_cdn
-~/src$ mkdir ../static_cdn
-```
 
 ##### Connecting to database:
 This application requires MySQL Database.
-Create a database with name "imagesDB" and set the MySQL username and password in the ```base.py``` file of settings module present at ```src\image_gallery\settings```.
+Check [this link](https://goo.gl/85wAeM) if you don't know how to install MySQL.
+
+Create a database with name "imagesDB" and set the MySQL username and password in the ```base.py``` file present at ```src\image_gallery\settings```.
 
 ## Starting the App
 from the ```src\``` directory run the following commands:
 ```
-~/src$ python manage.py makemigrations
-~/src$ python manage.py migrate
-~/src$ python manage.py collectstatic
-~/src$ python manage.py createsuperuser
+~/src$ python3 manage.py makemigrations
+~/src$ python3 manage.py migrate
+~/src$ python3 manage.py collectstatic
+~/src$ python3 manage.py createsuperuser
 ```
 then enter the details which will be asked, like username, email and password.
 
@@ -51,12 +48,16 @@ You can also go to ```http://127.0.0.1:8000/admin``` in your browser and login w
 
 ## API Features
 
-- Users can get all images.
-- Users can get a particular image by passing the ID.
-- Users can get all images of a particular user.
-- Users can upload an image.
-- Users can update an image.
-- Users can delete an image.
+- Users can get all images. (BASE_URL/api/images)
+- Users can get a particular image by passing the ID. (BASE_URL/api/images/<image_id>)
+- Users can get all images of a particular user. (BASE_URL/api/images/?user=<username>)
+- Users can upload an image. (BASE_URL/api/images/create)
+- Users can update an image. (BASE_URL/api/images/<image_id>/edit)
+- Users can delete an image. (BASE_URL/api/images/<image_id>/delete)
+
+## Library's Used
+
+- [Django Rest Framework](https://www.django-rest-framework.org/)
 
 ## Development
 

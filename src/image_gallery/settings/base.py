@@ -66,8 +66,8 @@ DATABASES = {
     'default': {
         'ENGINE'    : 'django.db.backends.mysql',
         'NAME'      : 'imagesApiDB',
-        'USER'      : 'root',
-        'PASSWORD'  : 'darkfist123',
+        'USER'      : '', # your MySQL username
+        'PASSWORD'  : '', # your MySQL password
     }
 }
 

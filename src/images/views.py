@@ -12,6 +12,7 @@ def add_images(request):
 	errors = None
 	if form.is_valid():
 		if request.user.is_authenticated():
+			# saving the image in the database
 			obj = Image.objects.create(
 					title = form.cleaned_data.get('title'), 
 					description = form.cleaned_data.get('description'),
