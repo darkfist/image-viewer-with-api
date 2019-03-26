@@ -1,5 +1,5 @@
 [![Python](https://img.shields.io/badge/Python-3.6-brightgreen.svg)](http://www.python.org/download/)
-# Django Image Gallery
+# Django Image Gallery With API
 
 A simple Image Gallery with API made with Python and Django.
 
@@ -7,6 +7,10 @@ A simple Image Gallery with API made with Python and Django.
 
 Django Image Gallery with API is the extention of Django Image Gallery project where users can register and then upload their images with the API also. These images can be viewed by anyone.
 Accepted Image Formats : JPEG, JPG, PNG, GIF
+
+## Demo Video
+
+You can watch the demo and explanatory video for this project on Youtube [here](https://youtu.be/KRb7CajEqDI).
 
 ## Installation and Dependencies
 
@@ -48,12 +52,14 @@ You can also go to ```http://127.0.0.1:8000/admin``` in your browser and login w
 
 ## API Features
 
-- Users can get all images. (BASE_URL/api/images)
-- Users can get a particular image by passing the ID. (BASE_URL/api/images/<image_id>)
-- Users can get all images of a particular user. (BASE_URL/api/images/?user=<username>)
-- Users can upload an image. (BASE_URL/api/images/create)
-- Users can update an image. (BASE_URL/api/images/<image_id>/edit)
-- Users can delete an image. (BASE_URL/api/images/<image_id>/delete)
+- Users can get all images. (```BASE_URL/api/images```)
+- Users can get a particular image by passing the ID. (```BASE_URL/api/images/<image_id>```)
+- Users can get all images of a particular user. (```BASE_URL/api/images/?user=<username>```)
+- Users can upload an image. (```BASE_URL/api/images/create```)
+- Users can update an image. (```BASE_URL/api/images/<image_id>/edit```)
+- Users can delete an image. (```BASE_URL/api/images/<image_id>/delete```)
+
+ **Note :** By default you will not get the data in JSON format. For that you have to use query '```?format=json```' in the API endpoints
 
 ## Library's Used
 
